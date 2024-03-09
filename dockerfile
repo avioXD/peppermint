@@ -3,7 +3,6 @@ FROM node:lts AS builder
 # Set the working directory inside the container
 WORKDIR /app
 
-ENV DATABASE_URL="postgresql://avioxd:oklaouxalauirAXlkjsljITuisa@38.242.158.49:5432/postgres?schema=public"
 
 RUN apt-get update && \
     apt-get install -y build-essential python3

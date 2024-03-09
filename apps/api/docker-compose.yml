@@ -7,9 +7,12 @@ services:
       - POSTGRES_USER=pepppermint
       - POSTGRES_PASSWORD=1234
       - POSTGRES_DB=peppermint
+      - DATABASE_URL=postgresql://pepppermint:1234@localhost:5433/peppermint?schema=public
     container_name: "pg"
     ports:
-      - '5432:5432'
+      - '5433:5432'
+    networks:
+      - peppermint_network
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
@@ -21,3 +24,9 @@ services:
 
 volumes:
   postgres_data:
+
+
+networks:
+  peppermint_network:
+    driver: bridge
+    external: true

@@ -6,13 +6,16 @@ services:
     image: postgres:latest
     restart: always
     ports:
-      - 5432:5432
+      - 5433:5432
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - peppermintpgdata:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: peppermint
       POSTGRES_PASSWORD: 1234
       POSTGRES_DB: peppermint
+    networks:
+      - peppermint_network
+    command: [ "postgres", "-c", "log_statement=all" ]
 
   peppermint:
     container_name: peppermint
@@ -28,12 +31,20 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
+    networks:
+      - peppermint_network
     environment:
-      DB_USERNAME: "avioxd"
-      DB_PASSWORD: "oklaouxalauirAXlkjsljITuisa"
-      DB_HOST: "38.242.158.49"
-      DATABASE_URL: "postgresql://avioxd:oklaouxalauirAXlkjsljITuisa@38.242.158.49:5432/postgres?schema=public"
+      DB_USERNAME: "peppermint"
+      DB_PASSWORD: "1234"
+      DB_HOST: "peppermint_postgres"
+      DATABASE_URL: "postgresql://peppermint:1234@localhost:5433/peppermint?schema=public"
       SECRET: 'peppermint4life'
 
 volumes:
   pgdata:
+
+
+networks:
+  peppermint_network:
+    name: peppermint_network
+    driver: bridge
