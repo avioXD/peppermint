@@ -8,7 +8,7 @@ services:
     ports:
       - 5433:5432
     volumes:
-      - peppermintpgdata:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: peppermint
       POSTGRES_PASSWORD: 1234
