@@ -15,7 +15,7 @@ export default function Document() {
           content="Ticket management system selfhosted open source"
         />
         <meta name="keywords" content="Keywords" />
-        <title>Peppermint</title>
+        <title>DataMint</title>
 
         <link href="/favicon/favicon.ico" rel="icon" />
         <link

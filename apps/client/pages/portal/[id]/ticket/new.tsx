@@ -35,15 +35,19 @@ export default function ClientTicketNew() {
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
-
   const router = useRouter();
+
   const [isLoading, setIsLoading] = useState(false);
   const [view, setView] = useState("new");
   const [ticketID, setTicketID] = useState("");
 
   const [selected, setSelected] = useState(type[2]);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState(
+    router.query.name ? router.query.name : "Anonymous"
+  );
+  const [email, setEmail] = useState(
+    router.query.email ? router.query.email : ""
+  );
   const [subject, setSubject] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState(pri[0]);
@@ -59,7 +63,7 @@ export default function ClientTicketNew() {
         name,
         title: subject,
         company: router.query.id,
-        email,
+        email: email,
         detail: description,
         priority: priority.name,
         type: selected.name,
@@ -89,10 +93,10 @@ export default function ClientTicketNew() {
   }
 
   return (
-    <div className="flex justify-center items-center content-center h-screen bg-white">
+    <div className="flex justify-center items-center content-center min-h-screen bg-gray-600">
       {view === "new" ? (
         <div className="max-w-2xl bg-white p-12 rounded-md">
-          <h1 className="font-bold text-2xl">Submit a Ticket Now</h1>
+          <h1 className="font-bold text-2xl">Submit a Ticket</h1>
           <span>
             Need help? Submit a ticket and our support team will get back to you
             as soon as possible.
