@@ -16,7 +16,7 @@ services:
 
   peppermint:
     container_name: peppermint
-    image: pepperlabs/peppermint:latest
+    build: "."
     ports:
       - 3000:3000
       - 5003:5003
@@ -24,15 +24,16 @@ services:
     depends_on:
       - peppermint_postgres
     healthcheck:
-      test: ["CMD", "sh", "-c", "wget --spider $$API_URL"]
+      test: [ "CMD", "sh", "-c", "wget --spider $$API_URL" ]
       interval: 30s
       timeout: 10s
       retries: 3
     environment:
-      DB_USERNAME: "peppermint"
-      DB_PASSWORD: "1234"
-      DB_HOST: "peppermint_postgres"
+      DB_USERNAME: "avioxd"
+      DB_PASSWORD: "oklaouxalauirAXlkjsljITuisa"
+      DB_HOST: "38.242.158.49"
+      DATABASE_URL: "postgresql://avioxd:oklaouxalauirAXlkjsljITuisa@38.242.158.49:5432/postgres?schema=public"
       SECRET: 'peppermint4life'
 
 volumes:
- pgdata:
+  pgdata:

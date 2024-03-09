@@ -373,10 +373,13 @@ export default function Ticket() {
                       >
                         save
                       </Button>
-                    {user.isAdmin && (
+                    )}
+                    {user.isAdmin() && (
                       <button
                         type="button"
-                        onClick={() => hide(!data.ticket.hidden)}
+                        onClick={() => {
+                          hide(!data.ticket.hidden);
+                        }}
                         className="inline-flex justify-center items-center gap-x-1.5 rounded-md bg-white px-5 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                       >
                         {data.ticket.hidden ? "Show Global" : "Hide Ticket"}
@@ -459,6 +462,7 @@ export default function Ticket() {
                                     : n
                                     ? n.name
                                     : t("select_new_user")}
+                                </span>
                               </Listbox.Button>
 
                               <Transition
